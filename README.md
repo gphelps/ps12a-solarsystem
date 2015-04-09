@@ -1,2 +1,2 @@
-# ps12a-solarsystem
-Numerical Solar System: PS12a Final Project
+# Numerical Solar System: PS12a Final Project
+
