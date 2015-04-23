@@ -2,7 +2,7 @@
 clear
 close all
 
-% Original code from "Computational Physics Using MATLAB"
+% Based off of "Computational Physics Using MATLAB"
 % Modified by Caroline Juang, Xincheng You, and Sohum Pawar 2015
 
 % define variables
@@ -10,8 +10,8 @@ G = 6.67384E-11;    % gravitational constant
 M = 1.99E30;        % mass of the sun
 
 % define number of steps
-n = 1000;
-dt = 0.001;  % time step in years
+n = 40000;
+dt = .001*365*24*60*60;  % time step in years
 % goes to 1 year
 
 % position array
@@ -19,10 +19,12 @@ x = zeros(1,n);
 y = zeros(1,n);
 
 % velocity array
+v = zeros(1,n);
 vx = zeros(1,n);
 vy = zeros(1,n);
 
 % acceleration array
+a = zeros(1,n);
 ax = zeros(1,n);
 ay = zeros(1,n);
 
@@ -32,29 +34,38 @@ r = zeros(1,n);
 % initial position
 x(1) = 149597871E3;    % in meters
 y(1) = 0;
+% initial radius
+r(1) = sqrt(x(1)^2 + y(1)^2); 
 
 % initial velocity
-v = sqrt(G*M/r);
+v(1) = sqrt(G*M/r(1));
 % vx(1) = v*(x/r);
 % vy(1) = v*(y/r);
 vx (1) = 0;
-vy (1) = 2*pi;
+vy (1) = .001*sqrt(G*M/r(1));
 
 % initial acceleration
-a = -G*M/(r^2);
+a(1) = -G*M/(r(1).^2);
 % initial acceleration components
-ax(1) = a*(x/r);
-ay(1) = a*(y/r);
+ax(1) = a(1)*(x(1)/r(1));
+ay(1) = a(1)*(y(1)/r(1));
 
-% initial radius
-r = 149597870700;   % in meters
-
+% figure;
+hold on
 for k=(2:n)
+    plot(x(k-1),y(k-1),'.','MarkerSize',20); getframe(gcf)
+    x(k) = x(k-1) + vx(k-1)*dt;
+    y(k) = y(k-1) + vy(k-1)*dt;
+    
+    r(k) = sqrt(x(k)^2 + y(k)^2);
+    
     vx(k) = vx(k-1)+ax(k-1)*dt;
     vy(k) = vy(k-1)+ay(k-1)*dt;
     
-    ax(k) = 
-    ax(y) = 
+    a(k) = -G*M/(r(k)^2);
+    ax(k) = a(k)*(x(k)/r(k));
+    ax(k) = a(k)*(y(k)/r(k));
+    
 end
 
-plot(vx,vy);
+
