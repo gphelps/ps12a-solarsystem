@@ -8,21 +8,30 @@ close all
 % define variables
 G = 6.67384E-11;    % gravitational constant
 M = 1.99E30;        % mass of the sun
-r = 149597870700;   % in meters
 
 % define number of steps
 n = 1000;
 dt = 0.001;  % time step in years
 % goes to 1 year
 
-x = 149597871E3;    % in meters
-y = 0;
+% position array
+x = zeros(1,n);
+y = zeros(1,n);
 
+% velocity array
 vx = zeros(1,n);
 vy = zeros(1,n);
 
+% acceleration array
 ax = zeros(1,n);
 ay = zeros(1,n);
+
+% radius array
+r = zeros(1,n);
+
+% initial position
+x(1) = 149597871E3;    % in meters
+y(1) = 0;
 
 % initial velocity
 v = sqrt(G*M/r);
@@ -31,16 +40,21 @@ v = sqrt(G*M/r);
 vx (1) = 0;
 vy (1) = 2*pi;
 
-% acceleration
+% initial acceleration
 a = -G*M/(r^2);
 % initial acceleration components
 ax(1) = a*(x/r);
 ay(1) = a*(y/r);
 
+% initial radius
+r = 149597870700;   % in meters
+
 for k=(2:n)
     vx(k) = vx(k-1)+ax(k-1)*dt;
     vy(k) = vy(k-1)+ay(k-1)*dt;
     
+    ax(k) = 
+    ax(y) = 
 end
 
 plot(vx,vy);
