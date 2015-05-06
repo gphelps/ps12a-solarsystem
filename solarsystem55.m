@@ -29,9 +29,9 @@ N = 100;
 
 for t = 1:N
   vx_mercury(t+dt) = vx_mercury(t) + dt*((-G*M_sun)/(((x_mercury(t))^2)+((y_mercury(t))^2))^(3/2))*x_mercury(t);
-  x_mercury(t+dt) = x_mercury(t) + dt*vx_mercury(t);
+  x_mercury(t+dt) = x_mercury(t) + dt*vx_mercury(t+dt);
   vy_mercury(t+dt) = vy_mercury(t) + dt*((-G*M_sun)/(((x_mercury(t))^2)+((y_mercury(t))^2))^(3/2))*y_mercury(t);
-  y_mercury(t+dt) = y_mercury(t) + dt*vy_mercury(t);
+  y_mercury(t+dt) = y_mercury(t) + dt*vy_mercury(t+dt);
 end
 
 plot(x_mercury,y_mercury)
