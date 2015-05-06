@@ -6,6 +6,8 @@ close all
 G = 6.67E-11;
 M_sun = 1.99E30;
 AU = 149597870700;
+dt = 1; % day
+N = 1E6;
 
 % Initial Astronomical Data
 m_mercury = 3.302E23;                                   % kg
@@ -24,8 +26,6 @@ vx_mercury = [];
 vx_mercury(1) = vx0_mercury;
 vy_mercury = [];
 vy_mercury(1) = vy0_mercury;
-dt = 1; % day
-N = 100;
 
 for t = 1:N
   vx_mercury(t+dt) = vx_mercury(t) + dt*((-G*M_sun)/(((x_mercury(t))^2)+((y_mercury(t))^2))^(3/2))*x_mercury(t);
