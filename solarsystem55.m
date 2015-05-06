@@ -7,7 +7,7 @@ G = 6.67E-11;
 M_sun = 1.99E30;
 AU = 149597870700;
 dt = 1; % day
-N = 1E6;
+N = 1E3;
 
 % Initial Astronomical Data
 m_mercury = 3.302E23;                                   % kg
